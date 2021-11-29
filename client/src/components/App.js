@@ -1,15 +1,51 @@
-import React, { useState, useEffect } from 'react';
+// import React feature here
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function App() {
-  const [bacon, setBacon] = useState(null);
+//import our components here
+// import Header from "./Header";
+// import Footer from "./Footer";
+// and more to come to an App.js near you
 
-  useEffect(() => {
-    fetch('/bacon')
-      .then(res => res.json())
-      .then(data => setBacon(data));
-  }, []);
+// import out styling stuff here
+import styled from "styled-components";
+import GlobalStyles from "./GlobalStyles";
 
-  return <div>{bacon ? bacon : `...where's my stuff?...`}</div>;
-}
+// main application component
+const App = () => {
+  return (
+    <BrowserRouter>
+      {/* <GlobalStyles /> */}
+      {/* <Header /> */}
+      {/* <SideBar /> */}
+      <Main>
+        <Switch>
+          <Route exact path="/">
+            {/* Homepage component will have to go here. */}
+          </Route>
+          <Route path="/product/:categoryId/:sellerId/:productId">
+            {/* Product page component will have to go here. */}
+          </Route>
+          <Route path="/category/:categoryId">
+            {/* Category component will have to go here. */}
+          </Route>
+          <Route path="/store/:sellerId">
+            {/* Seller component will have to go here. i.e products from this seller */}
+          </Route>
+          <Route path="/cart">
+            {/* Cart component will have to go here. */}
+          </Route>
+          <Route path="/checkout">
+            {/* Checkout component will have to go here. */}
+          </Route>
+          <Route path="/confirmation">
+            {/* Confirmation component will have to go here. */}
+          </Route>
+        </Switch>
+        {/* <Footer /> */}
+      </Main>
+    </BrowserRouter>
+  );
+};
 
 export default App;
