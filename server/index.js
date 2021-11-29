@@ -6,6 +6,8 @@ const morgan = require('morgan');
 
 const PORT = 4000;
 
+const { getItems } = require('./handlers/getItems')
+
 express()
   .use(function(req, res, next) {
     res.header(
@@ -25,6 +27,6 @@ express()
   .use('/', express.static(__dirname + '/'))
 
   // REST endpoints?
-  .get('/bacon', (req, res) => res.status(200).json('🥓'))
+  .get('/items', getItems)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
