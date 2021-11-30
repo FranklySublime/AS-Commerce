@@ -1,9 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
-const Item = ({ name, category, picture }) => {
+const Item = ({ name, category, picture, _id }) => {
+  let navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${_id}`);
+  };
+
+  //render each item
   return (
-    <SmallerBox>
+    <SmallerBox onClick={handleClick}>
       <Image src={picture} alt="gadget" />
       <Div>
         <Title>{name}</Title>
@@ -20,7 +28,6 @@ const Title = styled.h2`
 `;
 
 const Image = styled.img`
-  /* width: 100%; */
   max-height: 150px;
 `;
 

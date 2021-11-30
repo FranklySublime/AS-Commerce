@@ -5,7 +5,9 @@ import Item from "./Item";
 
 const HomePage = () => {
   const [productFeed, setProductFeed] = React.useState(null);
-  const [numItems, setNumItems] = React.useState(20);
+  const [numItems, setNumItems] = React.useState(20); // 20 items displayed initially
+
+  //get all items
   useEffect(() => {
     fetch("/items")
       .then((res) => res.json())
@@ -14,10 +16,11 @@ const HomePage = () => {
       });
   }, []);
 
+  // when the load more button is clicked 20 more items are displayed
   const handleClick = () => {
     setNumItems(numItems + 20);
   };
-  console.log(productFeed, "hello");
+
   return (
     <div>
       {productFeed &&
@@ -29,7 +32,15 @@ const HomePage = () => {
             const name = product.name;
             const picture = product.imageSrc;
             const category = product.category;
-            return <Item name={name} category={category} picture={picture} />;
+            const _id = product._id;
+            return (
+              <Item
+                _id={_id}
+                name={name}
+                category={category}
+                picture={picture}
+              />
+            );
           })}
       <ButtonHolder>
         <LoadMore onClick={handleClick}>Load More</LoadMore>

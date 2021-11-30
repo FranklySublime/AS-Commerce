@@ -24,13 +24,13 @@ const App = () => {
       {/* <GlobalStyles /> */}
       <Header />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
         <Route path="/product/:_id" element={<ProductInfo />} />
         <Route path="/category/:_id" element={<Category />} />
         <Route path="/store/:_id" element={<SellerInfo />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
