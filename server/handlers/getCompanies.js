@@ -13,23 +13,23 @@ const options = {
 
 const client = new MongoClient(URI, options);
 
-const getItems = async (req, res) => {
+const getCompanies = async (req, res) => {
   try {
     await client.connect();
     console.log("connected");
   
     const db = client.db("e-commerce");
-    const items = await db.collection("items").find().toArray()
+    const companies = await db.collection("companies").find().toArray()
   
-    items ?
+    companies ?
       res.status(200).json({
         status: 200,
-        data: items,
-        message: "All items retrieved"
+        data: companies,
+        message: "All companies retrieved"
       }) :
       res.status(400).json({
         status: 400,
-        message: 'Items could not be retrieved'
+        message: 'Companies could not be retrieved'
       })
   } catch (err) {
     return res.status(500).json({
@@ -42,5 +42,5 @@ const getItems = async (req, res) => {
 };
 
 module.exports = {
-  getItems
+  getCompanies
 }
