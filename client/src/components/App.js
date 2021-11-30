@@ -25,12 +25,9 @@ const App = () => {
       <Header />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route
-          path="/product/:categoryId/:sellerId/:productId"
-          element={<ProductInfo />}
-        />
-        <Route path="/category/:categoryId" element={<Category />} />
-        <Route path="/store/:sellerId" element={<SellerInfo />} />
+        <Route path="/product/:_id" element={<ProductInfo />} />
+        <Route path="/category/:_id" element={<Category />} />
+        <Route path="/store/:_id" element={<SellerInfo />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/confirmation" element={<Confirmation />} />
