@@ -47,26 +47,39 @@ const ProductInfo = () => {
   //adding the add to shopping cart function so that we can render a beautiful cart
 
   const handleCart = () => {
-    // if (shoppingCart.map((item) => item._id === productDetails._id)) {
-    //   setItemCount(itemCount + 1);
-    //   shoppingCart.map((item) => {
-    //     if (item._id === productDetails._id) {
-    //       item.quantity = itemCount;
-    //     }
-    //   });
-    // } else {
+    let inCart = false;
 
-    setItemCount(itemCount + 1);
-    setShoppingCart((customersCart) => {
-      let customerCart = [...customersCart];
-      customerCart.push({ _id: productDetails._id, quantity: itemCount });
-      sessionStorage.setItem("shoppingCart", JSON.stringify(customerCart));
-      return customerCart;
+    //check if item is in cart
+    shoppingCart.forEach((item) => {
+      if (productDetails._id === item._id) {
+        inCart = true;
+      }
     });
 
-    // }
+    // if item is in cart, map through the shopping cart to update the quantity (create a new array)
+    //else, push it into the cart
+    if (inCart) {
+      let newCart = shoppingCart.map((item) => {
+        if (productDetails._id === item._id) {
+          return { ...item, quantity: item.quantity + 1 };
+        } else {
+          return item;
+        }
+      });
+      setShoppingCart(newCart);
+      console.log(shoppingCart, "hello");
+    } else {
+      setItemCount(itemCount + 1);
+      setShoppingCart((customersCart) => {
+        let customerCart = [...customersCart];
+        customerCart.push({ _id: productDetails._id, quantity: itemCount });
+        sessionStorage.setItem("shoppingCart", JSON.stringify(customerCart));
+        return customerCart;
+      });
+      console.log(shoppingCart, "hello");
+    }
   };
-  console.log(shoppingCart);
+
   //render item details page
   return (
     <>
