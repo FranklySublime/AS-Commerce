@@ -14,14 +14,13 @@ import Checkout from "./Checkout";
 import Confirmation from "./Confirmation";
 
 // import out styling stuff here
-import styled from "styled-components";
-// import GlobalStyles from "./GlobalStyles";
+import GlobalStyles from "./GlobalStyles";
 
 // main application component
 const App = () => {
   return (
     <BrowserRouter>
-      {/* <GlobalStyles /> */}
+      <GlobalStyles />
       <Header />
       <Routes>
         <Route path="/product/:_id" element={<ProductInfo />} />
