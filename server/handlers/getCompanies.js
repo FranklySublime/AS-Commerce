@@ -41,6 +41,4 @@ const getCompanies = async (req, res) => {
   }
 };
 
-module.exports = {
-  getCompanies
-}
+module.exports = { getCompanies };
