@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const PORT = 4000;
 
 const { getItems } = require('./handlers/getItems')
+const { getCompanies } = require('./handlers/getCompanies')
 
 express()
   .use(function(req, res, next) {
@@ -28,5 +29,6 @@ express()
 
   // REST endpoints?
   .get('/items', getItems)
+  .get('/companies', getCompanies)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

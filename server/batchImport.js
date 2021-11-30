@@ -4,7 +4,7 @@ const fs = require('file-system')
 // require('dotenv').config();
 // const {MONGO_URI} = process.env;
 
-const URI = "mongodb+srv://djeehem:j43j5h345hmnb@cluster0.alqgy.mongodb.net/slingair?retryWrites=true&w=majority"
+const URI = "mongodb+srv://djeehem:j43j5h345hmnb@cluster0.alqgy.mongodb.net/e-commerce?retryWrites=true&w=majority"
 
 const companies = JSON.parse(fs.readFileSync("./data/companies.json"));
 const items = JSON.parse(fs.readFileSync("./data/items.json"));
