@@ -9,6 +9,7 @@ const PORT = 4000;
 const { getItems } = require('./handlers/getItems');
 const { getItem } = require('./handlers/getItem');
 const { getCompanies } = require('./handlers/getCompanies');
+const { getCompany } = require('./handlers/getCompany');
 
 express()
   .use(function(req, res, next) {
@@ -32,5 +33,6 @@ express()
   .get('/items', getItems)
   .get('/items/:_id', getItem)
   .get('/companies', getCompanies)
+  .get('/companies/:companyId', getCompany)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
