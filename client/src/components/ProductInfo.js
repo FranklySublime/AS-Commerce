@@ -1,13 +1,16 @@
-import React from "react";
-import { useEffect } from "react/cjs/react.development";
-import styled from "styled-components";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import styled from "styled-components";
+import { CartContext } from "../context/CartContext";
+
 const ProductInfo = () => {
-  const [productDetails, setProductDetails] = React.useState(null);
-  const [companyInfo, setCompanyInfo] = React.useState(null);
-  const [individualCompany, setIndividualCompany] = React.useState(null);
+  const [productDetails, setProductDetails] = useState(null);
+  const [companyInfo, setCompanyInfo] = useState(null);
+  const [individualCompany, setIndividualCompany] = useState(null);
   const { _id } = useParams();
+  const { shoppingCart, setShoppingCart, itemCount, setItemCount } =
+    useContext(CartContext);
 
   //get item based on _id
   useEffect(() => {
@@ -41,6 +44,29 @@ const ProductInfo = () => {
     }
   }, [companyInfo]);
 
+  //adding the add to shopping cart function so that we can render a beautiful cart
+
+  const handleCart = () => {
+    // if (shoppingCart.map((item) => item._id === productDetails._id)) {
+    //   setItemCount(itemCount + 1);
+    //   shoppingCart.map((item) => {
+    //     if (item._id === productDetails._id) {
+    //       item.quantity = itemCount;
+    //     }
+    //   });
+    // } else {
+
+    setItemCount(itemCount + 1);
+    setShoppingCart((customersCart) => {
+      let customerCart = [...customersCart];
+      customerCart.push({ _id: productDetails._id, quantity: itemCount });
+      sessionStorage.setItem("shoppingCart", JSON.stringify(customerCart));
+      return customerCart;
+    });
+
+    // }
+  };
+  console.log(shoppingCart);
   //render item details page
   return (
     <>
@@ -61,7 +87,7 @@ const ProductInfo = () => {
               )}
               <Category>{productDetails.category}</Category>
               {productDetails.numInStock !== 0 ? (
-                <ItemButton>
+                <ItemButton onClick={() => handleCart()}>
                   {productDetails.price} -- <strong>Buy Now!</strong>
                 </ItemButton>
               ) : (
