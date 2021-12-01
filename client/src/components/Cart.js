@@ -57,12 +57,12 @@ const Cart = () => {
                           <Price>{item.price}</Price>
                           <QuantityWrapper>
                             <Quantity>Quantity: {item.quantity}</Quantity>
-                            <button onClick={() => handleIncrement(item)}>
+                            <Button onClick={() => handleIncrement(item)}>
                               +
-                            </button>
-                            <button onClick={() => handleDecrement(item)}>
+                            </Button>
+                            <Button onClick={() => handleDecrement(item)}>
                               -
-                            </button>
+                            </Button>
                           </QuantityWrapper>
                         </ItemDetails>
                       </>
@@ -92,6 +92,17 @@ const Cart = () => {
   );
 };
 
+const Button = styled.button`
+  border: solid;
+  background-color: transparent;
+  color: #3f612d;
+  border-color: #3f612d;
+  border-width: thin;
+  margin-right: 4px;
+  width: 25px;
+  border-radius: 50%;
+`;
+
 const Wrapper = styled.div`
   background-color: #f1f7ee;
 `;
@@ -118,6 +129,7 @@ const ItemDetails = styled.div`
 
 const ItemImage = styled.img`
   height: 150px;
+  max-width: 150px;
   border-radius: 30%30px;
   margin-right: 50px;
 `;
@@ -126,23 +138,28 @@ const ItemName = styled.p`
   font-family: "Lato", sans-serif;
   font-size: 25px;
   margin-bottom: 5px;
+  margin-top: 0;
+  color: #3f612d;
 `;
 
 const CategoryName = styled.div`
   font-family: "Lato", sans-serif;
   font-size: 15px;
   margin-bottom: 5px;
+  color: #92aa83;
 `;
 
 const BrandName = styled.div`
   font-family: "Lato", sans-serif;
   font-size: 15px;
   margin-bottom: 5px;
+  color: #92aa83;
 `;
 const Quantity = styled.div`
   font-family: "Lato", sans-serif;
   font-size: 15px;
   margin: 0px 10px 5px 0px;
+  color: #92aa83;
 `;
 const QuantityWrapper = styled.div`
   display: flex;
@@ -151,6 +168,7 @@ const QuantityWrapper = styled.div`
 const Price = styled.div`
   font-family: "Lato", sans-serif;
   font-size: 35px;
+  color: #3f612d;
 `;
 const CheckoutWrapper = styled.div`
   display: flex;
