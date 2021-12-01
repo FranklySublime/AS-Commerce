@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo.png";
 import FitMan from "./FitMan.png";
 import Slogan from "./Slogan.png";
-
+import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { FiShoppingCart } from "react-icons/fi";
 
 const Header = () => {
+  const { shoppingCart, totalQuantity } = React.useContext(CartContext);
   return (
     <IconContext.Provider value={{ size: "25px" }}>
       <Wrapper>
@@ -22,7 +23,8 @@ const Header = () => {
         </div>
         <StyledLink to="/cart">
           <Cart>
-            <FiShoppingCart />
+            <Quantity>{totalQuantity}</Quantity>
+            <ShoppingCart size="0.2x" />
           </Cart>
         </StyledLink>
       </Wrapper>
@@ -42,6 +44,18 @@ const Wrapper = styled.header`
   color: #ffff;
 `;
 
+const ShoppingCart = styled(FiShoppingCart)`
+  color: #3f612d;
+`;
+
+const Quantity = styled.p`
+  font-family: "Lato", sans-serif;
+  color: #3f612d;
+  position: relative;
+  left: 50px;
+  bottom: 4px;
+`;
+
 const StyleSlogan = styled.img`
   max-width: 250px;
   max-height: 250px;
@@ -49,7 +63,10 @@ const StyleSlogan = styled.img`
 `;
 
 const Cart = styled.div`
-  margin: 0px 35px 0px 0px;
+  margin: 0px 30px 0px 0px;
+  height: 50px;
+  width: 90px;
+  display: flex;
 `;
 
 const StyledLink = styled(Link)`
