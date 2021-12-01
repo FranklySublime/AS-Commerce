@@ -5,15 +5,10 @@ import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
-  const { shoppingCart, setShoppingCart } = useContext(CartContext);
+  const { shoppingCart, setShoppingCart, totalPrice, totalQuantity } =
+    useContext(CartContext);
 
   // calcultating total price and total quantities
-  let totalPrice = 0;
-  let totalQuantity = 0;
-  shoppingCart.forEach((item) => {
-    totalPrice += Number(item.price?.replace("$", "")) * Number(item.quantity);
-    totalQuantity += item.quantity;
-  });
 
   return (
     <Wrapper>

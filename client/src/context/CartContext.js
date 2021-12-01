@@ -10,6 +10,13 @@ export const CartProvider = ({ children }) => {
   );
   const [itemCount, setItemCount] = useState(1);
 
+  let totalPrice = 0;
+  let totalQuantity = 0;
+  shoppingCart.forEach((item) => {
+    totalPrice += Number(item.price?.replace("$", "")) * Number(item.quantity);
+    totalQuantity += item.quantity;
+  });
+
   return (
     <CartContext.Provider
       value={{
@@ -17,6 +24,8 @@ export const CartProvider = ({ children }) => {
         setShoppingCart,
         itemCount,
         setItemCount,
+        totalPrice,
+        totalQuantity,
       }}
     >
       {children}
