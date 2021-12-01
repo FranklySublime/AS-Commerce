@@ -1,35 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
   const { shoppingCart, setShoppingCart } = useContext(CartContext);
-  const [items, setItems] = useState(null);
 
-  // fetching items for the cart page
-  useEffect(() => {
-    fetch("/items")
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(data.data);
-      });
-  }, []);
-
-  // returning a new array of just the items we need based on shoppingCart context
-  // at the same time we are adding in the quantity to the cart
-
-  let cartArray = shoppingCart?.map((cartItem) => {
-    let item = items?.find((item) => {
-      return item._id === cartItem._id;
-    });
-    return { ...item, quantity: cartItem.quantity };
-  });
-
-  // calcultatin total price and total quantities
+  // calcultating total price and total quantities
   let totalPrice = 0;
   let totalQuantity = 0;
-  cartArray.forEach((item) => {
+  shoppingCart.forEach((item) => {
     totalPrice += Number(item.price?.replace("$", "")) * Number(item.quantity);
     totalQuantity += item.quantity;
   });
@@ -37,17 +18,19 @@ const Cart = () => {
   return (
     <Wrapper>
       <div>Shopping cart</div>
-      {cartArray.length === 0 ? (
+      {shoppingCart.length === 0 ? (
         <div> There doesn't seem to be anything here </div>
       ) : (
         <>
           <CartWrapper>
-            {cartArray.map((item) => {
+            {shoppingCart.map((item) => {
               return (
-                <ProductDetails>
+                <ProductDetails key={item._id}>
                   <ItemImage alt={item.name} src={item.imageSrc} />
                   <ItemDetails>
                     <ItemName>{item.name}</ItemName>
+                    <CategoryName>Category: {item.category}</CategoryName>
+                    <BrandName>Sold by: {item.company}</BrandName>
                     <Price>{item.price}</Price>
                     <div>Quantity: {item.quantity}</div>
                   </ItemDetails>
@@ -61,9 +44,11 @@ const Cart = () => {
                 Sub-total{" "}
                 {totalQuantity === 1 ? "(1 item)" : `(${totalQuantity} items)`}{" "}
               </div>
-              <div>$ {totalPrice}</div>
+              <div>$ {totalPrice.toFixed(2)}</div>
             </Checkout>
-            <CheckoutButton>checkout</CheckoutButton>
+            <StyledLink to="/checkout">
+              <CheckoutButton>checkout</CheckoutButton>
+            </StyledLink>
           </CheckoutWrapper>
         </>
       )}
@@ -97,6 +82,18 @@ const ItemName = styled.p`
   margin-bottom: 0;
 `;
 
+const CategoryName = styled.div`
+  font-family: "Raleway";
+  font-size: 15px;
+  margin-bottom: 0;
+`;
+
+const BrandName = styled.div`
+  font-family: "Raleway";
+  font-size: 15px;
+  margin-bottom: 0;
+`;
+
 const Price = styled.div`
   font-family: "Raleway";
   font-size: 35px;
@@ -121,5 +118,12 @@ const CheckoutButton = styled.button`
   width: 150px;
   border: none;
   border-radius: 30px;
+  cursor: pointer;
 `;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 export default Cart;

@@ -73,7 +73,16 @@ const ProductInfo = () => {
       setItemCount(itemCount + 1);
       setShoppingCart((customersCart) => {
         let customerCart = [...customersCart];
-        customerCart.push({ _id: productDetails._id, quantity: itemCount });
+        customerCart.push({
+          _id: productDetails._id,
+          quantity: itemCount,
+          name: productDetails.name,
+          price: productDetails.price,
+          category: productDetails.category,
+          body_location: productDetails.body_location,
+          imageSrc: productDetails.imageSrc,
+          company: individualCompany.name,
+        });
         sessionStorage.setItem("shoppingCart", JSON.stringify(customerCart));
         return customerCart;
       });
