@@ -6,52 +6,91 @@ import styled from "styled-components";
 
 const Checkout = () => {
   const { shoppingCart, totalPrice } = useContext(CartContext);
-  console.log(shoppingCart);
+
   return (
     <Wrapper>
-      <OrderSummary>
-        {shoppingCart.map((item) => {
-          return (
-            <ItemWrapper>
-              <ItemSummary>
-                <Quantity>{item.quantity}x</Quantity>
-                <ItemName>{item.name}</ItemName>
-              </ItemSummary>
-              <ItemDetails>
-                <Company>Sold by: {item.company}</Company>
-                <ItemPrice>{item.price}</ItemPrice>
-              </ItemDetails>
-            </ItemWrapper>
-          );
-        })}
-        <Total>${totalPrice.toFixed(2)}</Total>
-      </OrderSummary>
-      <form>
+      <Div>
+        <OrderSummary>
+          <H2>Please review your items and confirm your purchase.</H2>
+          <AnotherDiv>
+            {shoppingCart.map((item) => {
+              return (
+                <ItemWrapper>
+                  <ItemSummary>
+                    <Quantity>{item.quantity}x</Quantity>
+                    <ItemName>{item.name}</ItemName>
+                  </ItemSummary>
+                  <ItemDetails>
+                    <Company>Sold by: {item.company}</Company>
+                    <ItemPrice>{item.price}</ItemPrice>
+                  </ItemDetails>
+                </ItemWrapper>
+              );
+            })}
+            <TotalDiv>
+              <TotalText>Total</TotalText>
+              <Total>${totalPrice.toFixed(2)}</Total>
+            </TotalDiv>
+          </AnotherDiv>
+        </OrderSummary>
         <FormWrapper>
-          <input placeholder="First Name" />
-          <input placeholder="Last Name" />
-          <input placeholder="e-mail" />
-          <input placeholder="Phone Number" />
-          <input placeholder="Street Address" />
-          <input placeholder="City" />
-          <input placeholder="Province" />
-          <input placeholder="Postal Code" />
-          <input placeholder="Country" />
-          <input placeholder="credit card" />
-          <input placeholder="CVC" />
-          <Confirmation disabled={true}>Confirm</Confirmation>
+          <form type="submit">
+            <Input placeholder="First Name" required />
+            <Input placeholder="Last Name" required />
+            <Input placeholder="e-mail" type="email" required />
+            <Input placeholder="Phone Number" required />
+            <Input placeholder="Street Address" required />
+            <Input placeholder="City" required />
+            <Input placeholder="Province" required />
+            <Input placeholder="Postal Code" required />
+            <Input placeholder="Country" required />
+            <Input placeholder="credit card" required />
+            <Input placeholder="CVC" required />
+            <Confirmation>Confirm</Confirmation>
+          </form>
         </FormWrapper>
-      </form>
+      </Div>
     </Wrapper>
   );
 };
 
 const OrderSummary = styled.div`
-  max-width: 500px;
+  width: 600px;
   min-width: 400px;
+  margin-left: 10%;
+  margin-top: 10px;
+`;
+const Div = styled.div`
+  display: flex;
+`;
+const AnotherDiv = styled.div`
+  margin-top: 30px;
 `;
 
-const Wrapper = styled.div``;
+const TotalDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+`;
+const TotalText = styled.p`
+  font-family: "Lato", sans-serif;
+  color: #3f612d;
+  margin-left: 20px;
+  font-size: 25px;
+`;
+
+const Wrapper = styled.div`
+  background-color: #f1f7ee;
+  height: 100vh;
+`;
+
+const H2 = styled.h2`
+  font-family: "Lato", sans-serif;
+  color: #3f612d;
+  margin-left: 30%;
+  margin-top: 30px;
+  width: 700px;
+`;
 
 const ItemWrapper = styled.div`
   display: flex;
@@ -75,14 +114,24 @@ const ItemDetails = styled.div`
 const Quantity = styled.div`
   font-weight: bold;
   margin-right: 8px;
+  font-family: "Lato", sans-serif;
+  color: #92aa83;
 `;
 
-const ItemName = styled.div``;
+const ItemName = styled.div`
+  font-family: "Lato", sans-serif;
+  color: #92aa83;
+`;
 
-const Company = styled.div``;
+const Company = styled.div`
+  font-family: "Lato", sans-serif;
+  color: #92aa83;
+`;
 
 const ItemPrice = styled.div`
   font-weight: bold;
+  font-family: "Lato", sans-serif;
+  color: #3f612d;
 `;
 
 const Total = styled.div`
@@ -91,27 +140,41 @@ const Total = styled.div`
   margin-top: 15px;
   font-size: 25px;
   font-weight: bold;
+  font-family: "Lato", sans-serif;
+  color: #3f612d;
+  margin-right: 70px;
 `;
 
 const FormWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 4px solid #000;
+  border: 4px solid #3f612d;
   border-radius: 6px;
-  padding: 25px;
+  padding: 20px;
+  width: 15%;
+  margin-top: 100px;
+`;
+
+const Input = styled.input`
+  margin: 3px;
 `;
 
 const Confirmation = styled.button`
-  margin: 10px 0px 0px 0px;
-  width: 100%;
-  border-radius: 4px;
+  width: 158px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
+  font-family: "Lato", sans-serif;
+  background-color: #3f612d;
+  color: #f1f7ee;
+  padding: 15px 20px 15px 20px;
+  &:hover {
+    background-color: #f1f7ee;
+    color: #3f612d;
+    border: solid;
+    border-color: #3f612d;
+    border-width: medium;
   }
 `;
 
