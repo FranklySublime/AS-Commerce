@@ -1,21 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
+
 import Item from "./Item";
-import { CircularProgress } from "@material-ui/core";
+import { ProductContext } from "../context/ProductContext";
+// import { CircularProgress } from "@material-ui/core";
 
 const HomePage = () => {
-  const [productFeed, setProductFeed] = React.useState(null);
-  const [numItems, setNumItems] = React.useState(20); // 20 items displayed initially
-
-  //get all items
-  useEffect(() => {
-    fetch("/items")
-      .then((res) => res.json())
-      .then((data) => {
-        setProductFeed(data);
-      });
-  }, []);
+  const { productFeed } = useContext(ProductContext);
+  const [numItems, setNumItems] = useState(20); // 20 items displayed initially
 
   // when the load more button is clicked 20 more items are displayed
   const handleClick = () => {
