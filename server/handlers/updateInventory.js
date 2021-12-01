@@ -16,7 +16,7 @@ const client = new MongoClient(URI, options);
 const updateInventory = async (req, res) => {
   // items_ids needs to be of this format: "item_ids": [6543, 6544, 6545]
   const  { item_ids }  = req.body
-  const purcharsedItems = Object.values(item_ids)
+  const purcharsed_ids = Object.values(item_ids)
 
   try {
     await client.connect();
@@ -24,19 +24,42 @@ const updateInventory = async (req, res) => {
   
     const db = client.db("e-commerce");
     
-    const result = await db.collection("items").updateMany(
-      { _id : { $in : purcharsedItems }},
-      { $inc: { "numInStock" : -1 }}
-    );
+    // const result = await db.collection("items").updateMany(
+    //   { _id : { $in : purcharsedItems }},
+    //   { $inc: { "numInStock" : -1 }}
+    // );
 
-    result.matchedCount === result.modifiedCount ?
-      res.status(200).json({
-        data: result
-      }) :
-      res.status(400).json({
-        status: 400,
-        message: `Could not update inventory for ${data.matchedCount - data.modifiedCount} items(s)`
-      })
+    const result = purcharsed_ids.forEach(id => {
+      db.collection("items").findOneAndUpdate(
+        {_id: id},
+        {$inc: { "numInStock" : -1 }}
+      )
+    })
+
+    // db.collection("items").find( { _id : { $in : item_ids } } );
+
+    // forEach item in items
+
+    // const updateDoc = {
+    //   $set: {
+    //     invetory_count: item.inventory_count--              
+    //   },
+    // };
+
+    // const result = await collection.updateOne({}, updateDoc, {});
+
+    return res.status(200).json({
+      data: result
+    })
+
+    // result.matchedCount === result.modifiedCount ?
+    //   res.status(200).json({
+    //     data: result
+    //   }) :
+    //   res.status(400).json({
+    //     status: 400,
+    //     message: `Could not update inventory for ${data.matchedCount - data.modifiedCount} items(s)`
+    //   })
     } 
     catch (e) {
       res.status(500).json({
