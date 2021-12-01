@@ -12,7 +12,9 @@ const Header = () => {
   return (
     <IconContext.Provider value={{ size: "25px" }}>
       <Wrapper>
-        <StyleSlogan src={Slogan} />
+        <StyledLink to="/">
+          <StyleSlogan src={Slogan} />
+        </StyledLink>
         <div>
           <StyledLink to="/">
             <LogoStyled src={Logo} />

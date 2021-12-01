@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
 import Item from "./Item";
-// import { CircularProgress } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 
 const HomePage = () => {
   const [productFeed, setProductFeed] = React.useState(null);
@@ -25,24 +25,6 @@ const HomePage = () => {
   return (
     <div>
       <Wrapper>
-        {productFeed &&
-          productFeed.data
-            .slice(0, numItems ? numItems : productFeed.data.length)
-            .map((item) => {
-              const product = item;
-              const name = product.name;
-              const picture = product.imageSrc;
-              const category = product.category;
-              const _id = product._id;
-              return (
-                <Item
-                  _id={_id}
-                  name={name}
-                  category={category}
-                  picture={picture}
-                />
-              );
-            })}
         {productFeed &&
           productFeed.data
             .slice(0, numItems ? numItems : productFeed.data.length)
