@@ -53,19 +53,24 @@ const LoadMore = styled.button`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lato", sans-serif;
   background-color: #3f612d;
   border-radius: 20px;
   padding: 15px;
   width: 150px;
   &:hover {
+    background-color: #f1f7ee;
+    color: #3f612d;
+    border: solid;
+    border-color: #3f612d;
+    border-width: medium;
     cursor: pointer;
   }
 `;
 const CircDiv = styled.div``;
 
 const Wrapper = styled.div`
-  background-color: #e0edc5;
+  background-color: #f1f7ee;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -73,7 +78,7 @@ const Wrapper = styled.div`
 `;
 const ButtonHolder = styled.div`
   position: relative;
-  background-color: #92aa83;
+  background-color: #f1f7ee;
   width: 100%;
   height: 100%;
   margin: 0 auto;

@@ -149,6 +149,7 @@ const ItemButton = styled.button`
     border: solid;
     border-color: #3f612d;
     border-width: medium;
+    cursor: pointer;
   }
 `;
 const PositionItems = styled.div`
