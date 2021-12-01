@@ -8,7 +8,6 @@ export const CartProvider = ({ children }) => {
       ? JSON.parse(sessionStorage.getItem("shoppingCart"))
       : []
   );
-  const [itemCount, setItemCount] = useState(1);
 
   let totalPrice = 0;
   let totalQuantity = 0;
@@ -22,8 +21,6 @@ export const CartProvider = ({ children }) => {
       value={{
         shoppingCart,
         setShoppingCart,
-        itemCount,
-        setItemCount,
         totalPrice,
         totalQuantity,
       }}
