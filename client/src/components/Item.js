@@ -35,16 +35,16 @@ const Image = styled.img`
 `;
 
 const PriceTag = styled.p`
-  border: 3px solid darkgreen;
+  border: 3px solid #3f612d;
   max-width: 70px;
-  color: black;
+  color: #3f612d;
   padding: 10px;
   border-bottom-left-radius: 10px;
   margin-left: 290px;
   margin-top: -2px;
   &:hover {
-    transform: scale(1.5);
-    box-shadow: 0px 0px 10px #39ff14;
+    transform: scale(1.2);
+    box-shadow: 0px 0px 5px #39ff14;
   }
 `;
 
@@ -63,8 +63,8 @@ const SmallerBox = styled.div`
     transform: scale(1.05);
     border-radius: 10px;
     border-color: #3f612d;
-    border-width: 4px;
-    box-shadow: 10px 10px 10px 0px #3f612d;
+    border-width: 2px;
+    box-shadow: 5px 5px 5px 0px #3f612d;
   }
 `;
 

@@ -11,18 +11,23 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: #92aa83;
+  background-color: #b0bea9;
+  height: 100px;
 `;
 
 const H1 = styled.h1`
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: bold;
   font-size: medium;
+  color: #3f612d;
+  text-align: center;
 `;
 
 const H2 = styled.h2`
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: small;
+  color: #3f612d;
+  text-align: center;
 `;
 
 export default Footer;
