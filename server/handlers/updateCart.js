@@ -15,9 +15,10 @@ const options = {
 const client = new MongoClient(URI, options);
 
 const updateCart = async (req, res) => {
-  const {_id, item_qty } = req.body
+  const {_id, item_qty, totalPrice } = req.body
   const query = Number(_id)
   const qty = Number(item_qty)
+  const totPrice = Number(totalPrice)
 
   try {
     await client.connect();
@@ -34,7 +35,7 @@ const updateCart = async (req, res) => {
         message: "Item quantity updated."
       })
     } else if (itemFoundInItems) {
-      await db.collection('cart').insertOne({_id: uuidv4(), ...itemFoundInItems, qty})
+      await db.collection('cart').insertOne({_id: uuidv4(), ...itemFoundInItems, qty: 1, totPrice})
 
       return res.status(200).json({
         status: 200,
