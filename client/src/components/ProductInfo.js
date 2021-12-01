@@ -67,6 +67,7 @@ const ProductInfo = () => {
         }
       });
       setShoppingCart(newCart);
+      sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
       console.log(shoppingCart, "hello");
     } else {
       setItemCount(itemCount + 1);
@@ -79,6 +80,8 @@ const ProductInfo = () => {
       console.log(shoppingCart, "hello");
     }
   };
+
+  console.log(productDetails);
 
   //render item details page
   return (
