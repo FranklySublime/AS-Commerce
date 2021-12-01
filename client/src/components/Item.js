@@ -29,18 +29,25 @@ const Title = styled.h2`
 
 const Image = styled.img`
   max-height: 150px;
+  min-width: 150px;
+  border-radius: 10px;
 `;
 
 const SmallerBox = styled.div`
-  display: inline-block;
   margin: 30px;
-  background-color: white;
-  width: 500px;
-  height: 375px;
+  border-radius: 10px;
+  background-color: #3f612d;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  color: white;
+  max-width: 350px;
+  height: 275px;
   &:hover {
     border: solid;
-    border-color: black;
-    border-width: 0.5px;
+    border-radius: 10px;
+    border-color: #3f612d;
+    border-width: 1px;
+    box-shadow: 10px 10px 10px 0px #3f612d;
   }
 `;
 

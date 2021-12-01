@@ -7,8 +7,8 @@ export default createGlobalStyle`
     --color-asparagus: #92aa83;
     --color-nyanza: #e0edc5;
     --color-dark-moss-green: #3f612d;
-    --font-heading: 'Roboto', Arial, Helvetica, sans-serif
-    --font-body: 'Lato', Arial, Helvetica, sans-serif;
+    --font-heading: 'Roboto', sans-serif
+    --font-body: 'Lato', sans-serif;
     --padding-page: 10px;
   }
 

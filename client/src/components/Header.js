@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo.png";
+import FitMan from "./FitMan.png";
+import Slogan from "./Slogan.png";
 
 import styled from "styled-components";
 import { IconContext } from "react-icons";
@@ -9,9 +12,10 @@ const Header = () => {
   return (
     <IconContext.Provider value={{ size: "25px" }}>
       <Wrapper>
+        <StyleSlogan src={Slogan} />
         <div>
           <StyledLink to="/">
-            <Logo>Logo Placeholder</Logo>
+            <LogoStyled src={Logo} />
           </StyledLink>
         </div>
         <StyledLink to="/cart">
@@ -20,6 +24,9 @@ const Header = () => {
           </Cart>
         </StyledLink>
       </Wrapper>
+      <OtherWrapper>
+        <ManImg src={FitMan} />
+      </OtherWrapper>
     </IconContext.Provider>
   );
 };
@@ -28,13 +35,15 @@ const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #3f612d;
+  background: #b0bea9;
+  max-height: 150px;
   color: #ffff;
 `;
 
-// will be switched to a styled img once we have a ✨ logo ✨
-const Logo = styled.h1`
-  margin: 10px 25px;
+const StyleSlogan = styled.img`
+  max-width: 250px;
+  max-height: 250px;
+  margin-top: 40px;
 `;
 
 const Cart = styled.div`
@@ -46,4 +55,26 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
+const LogoStyled = styled.img`
+  margin-right: 200px;
+  size: 100%;
+`;
+
+const OtherWrapper = styled.div`
+  overflow: hidden;
+  max-height: 50px;
+  &:hover {
+    transform: scale(1.5);
+    max-height: 100%;
+    max-width: 80%;
+  }
+`;
+
+const ManImg = styled.img`
+  opacity: 0.7;
+  position: relative;
+  top: -2px;
+  width: 100%;
+  display: flex;
+`;
 export default Header;
