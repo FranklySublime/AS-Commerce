@@ -22,24 +22,6 @@ const HomePage = () => {
             .slice(0, numItems ? numItems : productFeed.data.length)
             .map((item) => {
               const product = item;
-              const name = product.name;
-              const picture = product.imageSrc;
-              const category = product.category;
-              const _id = product._id;
-              return (
-                <Item
-                  _id={_id}
-                  name={name}
-                  category={category}
-                  picture={picture}
-                />
-              );
-            })}
-        {productFeed &&
-          productFeed.data
-            .slice(0, numItems ? numItems : productFeed.data.length)
-            .map((item) => {
-              const product = item;
               console.log(product, "boop");
               const name = product.name;
               const picture = product.imageSrc;
