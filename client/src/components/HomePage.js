@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
 import Item from "./Item";
-import { CircularProgress } from "@material-ui/core";
+// import { CircularProgress } from "@material-ui/core";
 
 const HomePage = () => {
   const [productFeed, setProductFeed] = React.useState(null);
