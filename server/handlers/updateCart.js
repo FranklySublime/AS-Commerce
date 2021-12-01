@@ -55,4 +55,37 @@ const updateCart = async (req, res) => {
   }
 };
 
-module.exports = { updateCart };
+const deleteCartItem = async (req, res) => {
+  const {_id } = req.params
+  const query = Number(_id)
+
+  try {
+    await client.connect();
+    console.log("connected");
+  
+    const db = client.db("e-commerce");
+
+    const itemFound = await db.collection("cart").findOne({ _id: query })
+
+    if (itemFound) {
+      await db.collection("cart").deleteOne({ _id: query })
+      return res.status(200).json({
+        status: 200,
+        message: "Item removed from cart."
+      })
+    } else {
+      res.status(400).json({
+        status: 400,
+        message: 'Item could not be retrieved'
+      })
+    }
+  } catch (err) {
+    return res.status(500).json({
+      status: 500,
+      message: "Server issue" });
+  } finally {
+    client.close();
+  }
+};
+
+module.exports = { updateCart, deleteCartItem };
