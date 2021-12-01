@@ -8,7 +8,31 @@ const Cart = () => {
   const { shoppingCart, setShoppingCart, totalPrice, totalQuantity } =
     useContext(CartContext);
 
-  // calcultating total price and total quantities
+  // adding inventory from cart functionality
+  const handleIncrement = (object) => {
+    let newCart = shoppingCart.map((item) => {
+      if (item._id === object._id) {
+        return { ...object, quantity: object.quantity + 1 };
+      } else {
+        return item;
+      }
+    });
+    setShoppingCart(newCart);
+    sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
+    console.log(shoppingCart);
+  };
+
+  // removing inventory from cart functionality
+  const handleDecrement = (object) => {
+    let newCart = shoppingCart.map((item) => {
+      if (item._id === object._id) {
+        return { ...object, quantity: object.quantity - 1 };
+      } else return item;
+    });
+    setShoppingCart(newCart);
+    sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
+    console.log(shoppingCart);
+  };
 
   return (
     <Wrapper>
@@ -20,16 +44,29 @@ const Cart = () => {
           <BigWrapper>
             <CartWrapper>
               {shoppingCart.map((item) => {
+                console.log("bonjour", item);
                 return (
                   <ProductDetails key={item._id}>
-                    <ItemImage alt={item.name} src={item.imageSrc} />
-                    <ItemDetails>
-                      <ItemName>{item.name}</ItemName>
-                      <CategoryName>Category: {item.category}</CategoryName>
-                      <BrandName>Sold by: {item.company}</BrandName>
-                      <Price>{item.price}</Price>
-                      <Quantity>Quantity: {item.quantity}</Quantity>
-                    </ItemDetails>
+                    {item.quantity >= 1 && (
+                      <>
+                        <ItemImage alt={item.name} src={item.imageSrc} />
+                        <ItemDetails>
+                          <ItemName>{item.name}</ItemName>
+                          <CategoryName>Category: {item.category}</CategoryName>
+                          <BrandName>Sold by: {item.company}</BrandName>
+                          <Price>{item.price}</Price>
+                          <QuantityWrapper>
+                            <Quantity>Quantity: {item.quantity}</Quantity>
+                            <button onClick={() => handleIncrement(item)}>
+                              +
+                            </button>
+                            <button onClick={() => handleDecrement(item)}>
+                              -
+                            </button>
+                          </QuantityWrapper>
+                        </ItemDetails>
+                      </>
+                    )}
                   </ProductDetails>
                 );
               })}
@@ -105,7 +142,10 @@ const BrandName = styled.div`
 const Quantity = styled.div`
   font-family: "Lato", sans-serif;
   font-size: 15px;
-  margin-bottom: 5px;
+  margin: 0px 10px 5px 0px;
+`;
+const QuantityWrapper = styled.div`
+  display: flex;
 `;
 
 const Price = styled.div`
