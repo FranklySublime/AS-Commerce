@@ -6,11 +6,11 @@ import { CartContext } from "../context/CartContext";
 
 const ProductInfo = () => {
   const [productDetails, setProductDetails] = useState(null);
+
   const [companyInfo, setCompanyInfo] = useState(null);
   const [individualCompany, setIndividualCompany] = useState(null);
   const { _id } = useParams();
-  const { shoppingCart, setShoppingCart, itemCount, setItemCount } =
-    useContext(CartContext);
+  const { shoppingCart, setShoppingCart } = useContext(CartContext);
 
   //get item based on _id
   useEffect(() => {
@@ -70,12 +70,12 @@ const ProductInfo = () => {
       sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
       console.log(shoppingCart, "hello");
     } else {
-      setItemCount(itemCount + 1);
+      // setItemCount(itemCount + 1);
       setShoppingCart((customersCart) => {
         let customerCart = [...customersCart];
         customerCart.push({
           _id: productDetails._id,
-          quantity: itemCount,
+          quantity: 1,
           name: productDetails.name,
           price: productDetails.price,
           category: productDetails.category,

@@ -5,6 +5,7 @@ export const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [productFeed, setProductFeed] = React.useState(null);
 
+  //get all items
   useEffect(() => {
     fetch("/items")
       .then((res) => res.json())
