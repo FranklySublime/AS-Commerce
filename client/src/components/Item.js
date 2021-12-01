@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
-const Item = ({ name, category, picture, _id }) => {
+const Item = ({ name, price, picture, _id }) => {
   let navigate = useNavigate();
 
   const handleClick = () => {
@@ -12,10 +12,10 @@ const Item = ({ name, category, picture, _id }) => {
   //render each item
   return (
     <SmallerBox onClick={handleClick}>
+      <PriceTag>{price}</PriceTag>
       <Image src={picture} alt="gadget" />
       <Div>
         <Title>{name}</Title>
-        <Category>{category}</Category>
       </Div>
     </SmallerBox>
   );
@@ -28,25 +28,42 @@ const Title = styled.h2`
 `;
 
 const Image = styled.img`
-  max-height: 150px;
-  min-width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 10px;
+`;
+
+const PriceTag = styled.p`
+  border: 3px solid darkgreen;
+  max-width: 70px;
+  color: black;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  margin-left: 290px;
+  margin-top: -2px;
+  &:hover {
+    transform: scale(1.5);
+    box-shadow: 0px 0px 10px #39ff14;
+  }
 `;
 
 const SmallerBox = styled.div`
   margin: 30px;
   border-radius: 10px;
-  background-color: #3f612d;
+  background-color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: small;
-  color: white;
+  text-align: center;
+  color: #3f612d;
   max-width: 350px;
-  height: 275px;
+  height: 350px;
   &:hover {
     border: solid;
+    transform: scale(1.05);
     border-radius: 10px;
     border-color: #3f612d;
-    border-width: 1px;
+    border-width: 4px;
     box-shadow: 10px 10px 10px 0px #3f612d;
   }
 `;
@@ -54,5 +71,3 @@ const SmallerBox = styled.div`
 const Div = styled.div`
   margin-left: 20px;
 `;
-
-const Category = styled.p``;
