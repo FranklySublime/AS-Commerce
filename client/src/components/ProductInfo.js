@@ -127,8 +127,9 @@ const ProductInfo = () => {
 };
 
 export default ProductInfo;
+
 const ItemImage = styled.img`
-  max-height: 500px;
+  height: 300px;
   border-radius: 30%30px;
   margin: 20px;
   margin-left: 100px;
@@ -136,46 +137,55 @@ const ItemImage = styled.img`
   margin-right: 50px;
 `;
 const ItemButton = styled.button`
-  background-color: #fac898;
-  font-family: "Raleway";
+  background-color: #3f612d;
+  color: #f1f7ee;
+  border: none;
+  font-family: "Lato", sans-serif;
   border-radius: 5px;
   padding: 15px 20px 15px 20px;
+  &:hover {
+    background-color: #f1f7ee;
+    color: #3f612d;
+    border: solid;
+    border-color: #3f612d;
+    border-width: medium;
+  }
 `;
 const PositionItems = styled.div`
   display: flex;
+  background-color: #f1f7ee;
 `;
 const ItemName = styled.p`
-  font-family: "Raleway";
-  font-size: 40px;
+  font-family: "Lato", sans-serif;
+  font-style: none;
+  font-size: 30px;
   margin-bottom: 0;
   margin-top: 120px;
+  color: #3f612d;
 `;
 
 const Category = styled.p`
-  font-family: "Raleway";
-  font-style: italic;
+  font-family: "Lato", sans-serif;
   font-size: 15px;
-  color: #fac898;
+  color: #92aa83;
   font-weight: bold;
 `;
 const Brand = styled.p`
-  font-family: "Raleway";
-  font-style: italic;
-  font-size: 15px;
-  color: #fac898;
+  font-family: "Lato", sans-serif;
+  font-size: 20px;
+  color: #92aa83;
   font-weight: bold;
 `;
 const Website = styled.a`
-  font-family: "Raleway";
+  font-family: "Lato", sans-serif;
   font-style: italic;
   font-size: 15px;
-  color: #fac898;
+  color: #92aa83;
   font-weight: bold;
 `;
 const Country = styled.p`
-  font-family: "Raleway";
-  font-style: italic;
+  font-family: "Lato", sans-serif;
   font-size: 15px;
-  color: #fac898;
+  color: #92aa83;
   font-weight: bold;
 `;
