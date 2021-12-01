@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Item from "./Item";
 import { ProductContext } from "../context/ProductContext";
+import { CircularProgress } from "@material-ui/core";
 // import { CircularProgress } from "@material-ui/core";
 
 const HomePage = () => {
@@ -17,7 +18,11 @@ const HomePage = () => {
   return (
     <div>
       <Wrapper>
-        {productFeed &&
+        {!productFeed ? (
+          <CircDiv>
+            <CircularProgress />
+          </CircDiv>
+        ) : (
           productFeed.data
             .slice(0, numItems ? numItems : productFeed.data.length)
             .map((item) => {
@@ -25,17 +30,13 @@ const HomePage = () => {
               console.log(product, "boop");
               const name = product.name;
               const picture = product.imageSrc;
-              const category = product.category;
               const _id = product._id;
+              const price = product.price;
               return (
-                <Item
-                  _id={_id}
-                  name={name}
-                  category={category}
-                  picture={picture}
-                />
+                <Item _id={_id} name={name} picture={picture} price={price} />
               );
-            })}
+            })
+        )}
       </Wrapper>
       <ButtonHolder>
         <LoadMore onClick={handleClick}>Load More</LoadMore>
@@ -49,22 +50,19 @@ export default HomePage;
 const LoadMore = styled.button`
   border: none;
   color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #3f612d;
   border-radius: 20px;
   padding: 15px;
   width: 150px;
-  font: var(--font-body);
   &:hover {
     cursor: pointer;
   }
 `;
-// const ItemCont = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   border: 2px solid black;
-// `;
+const CircDiv = styled.div``;
 
 const Wrapper = styled.div`
   background-color: #e0edc5;
@@ -75,7 +73,8 @@ const Wrapper = styled.div`
 `;
 const ButtonHolder = styled.div`
   position: relative;
-  width: 200px;
-  height: auto;
+  background-color: #92aa83;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
 `;
