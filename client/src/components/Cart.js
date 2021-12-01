@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
+import { ProductContext } from "../context/ProductContext";
 
 const Cart = () => {
   const { shoppingCart, setShoppingCart, totalPrice, totalQuantity } =
     useContext(CartContext);
+  const { updateProducts, setUpdateProducts } = useContext(ProductContext);
 
   // adding inventory from cart functionality
   const handleIncrement = (object) => {
@@ -24,6 +26,9 @@ const Cart = () => {
 
   // removing inventory from cart functionality
   const handleDecrement = (object) => {
+    if (object.quantity === 1) {
+      handleRemove(object);
+    }
     let newCart = shoppingCart.map((item) => {
       if (item._id === object._id) {
         return { ...object, quantity: object.quantity - 1 };
@@ -32,6 +37,15 @@ const Cart = () => {
     setShoppingCart(newCart);
     sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
     console.log(shoppingCart);
+  };
+
+  // remove item from cart
+  const handleRemove = (object) => {
+    shoppingCart.splice(shoppingCart.indexOf(object), 1);
+
+    sessionStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+    console.log(shoppingCart);
+    setUpdateProducts(!updateProducts);
   };
 
   return (
@@ -62,6 +76,9 @@ const Cart = () => {
                             </Button>
                             <Button onClick={() => handleDecrement(item)}>
                               -
+                            </Button>
+                            <Button onClick={() => handleRemove(item)}>
+                              Remove
                             </Button>
                           </QuantityWrapper>
                         </ItemDetails>

@@ -4,7 +4,7 @@ export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [productFeed, setProductFeed] = React.useState(null);
-
+  const [updateProducts, setUpdateProducts] = useState(false);
   //get all items
   useEffect(() => {
     fetch("/items")
@@ -12,13 +12,15 @@ export const ProductProvider = ({ children }) => {
       .then((data) => {
         setProductFeed(data);
       });
-  }, []);
+  }, [updateProducts]);
 
   return (
     <ProductContext.Provider
       value={{
         productFeed,
         setProductFeed,
+        updateProducts,
+        setUpdateProducts,
       }}
     >
       {children}
