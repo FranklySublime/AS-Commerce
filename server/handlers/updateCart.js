@@ -15,10 +15,12 @@ const options = {
 const client = new MongoClient(URI, options);
 
 const updateCart = async (req, res) => {
-  const {_id, item_qty, totalPrice } = req.body
+  const {_id, item_qty, subPrice } = req.body
   const query = Number(_id)
   const qty = Number(item_qty)
-  const totPrice = Number(totalPrice)
+  const price = Number(subPrice)
+
+  
 
   try {
     await client.connect();
@@ -29,14 +31,14 @@ const updateCart = async (req, res) => {
     const itemFoundInItems = await db.collection("items").findOne({ _id: query })
 
     if (itemFoundInCart) {
-      await db.collection("cart").updateOne({"_id": query}, { $set: {qty} })
+      await db.collection("cart").updateOne({"_id": query}, { $set: {qty, price} })
+      
       return res.status(200).json({
         status: 200,
-        message: "Item quantity updated."
+        message: "Item updated."
       })
     } else if (itemFoundInItems) {
-      await db.collection('cart').insertOne({_id: uuidv4(), ...itemFoundInItems, qty: 1, totPrice})
-
+      await db.collection('cart').insertOne({_id: uuidv4(), ...itemFoundInItems, qty, price})
       return res.status(200).json({
         status: 200,
         message: "Item added to the cart."
@@ -89,4 +91,4 @@ const deleteCartItem = async (req, res) => {
   }
 };
 
-module.exports = { updateCart, deleteCartItem };
+module.exports = { updateCart };
