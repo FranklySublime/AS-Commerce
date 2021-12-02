@@ -14,7 +14,7 @@ const Confirmation = () => {
     return array.forEach((item) => {
       setTotalPrice(
         Number(totalPrice) +
-          Number(parseFloat(item.price.replace("$", "")).toFixed(2))
+          Number(parseFloat(item.price.replace("$", "")).toFixed(2)) * item.qty
       );
     });
   };

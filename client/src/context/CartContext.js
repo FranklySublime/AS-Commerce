@@ -70,9 +70,22 @@ export const CartProvider = ({ children }) => {
       .then((res) => res.json())
       .then((json) => {
         console.log("JSON", json);
-        setShoppingCart([]);
-        sessionStorage.removeItem("shoppingCart");
-        navigate("../confirmation", { replace: true });
+        fetch("/items", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            item_ids: shoppingCart.map((item) => item._id),
+          }),
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json);
+            setShoppingCart([]);
+            sessionStorage.removeItem("shoppingCart");
+            navigate("../confirmation", { replace: true });
+          });
       })
       .catch((err) => {
         console.error("Error", err);

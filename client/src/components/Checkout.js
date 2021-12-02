@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const Checkout = () => {
   const { shoppingCart, totalPrice, handleToOrder } = useContext(CartContext);
-
+  console.log(shoppingCart.map((item) => item._id));
   return (
     <Wrapper>
       <Div>
