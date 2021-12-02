@@ -155,11 +155,13 @@ const FormWrapper = styled.div`
   padding: 20px;
   width: 15%;
   margin-top: 100px;
+  overflow: hidden;
 `;
 
 const Input = styled.input`
   margin: 3px;
   width: 200px;
+  overflow: hidden;
 `;
 
 const Confirmation = styled.button`
