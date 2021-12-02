@@ -17,7 +17,6 @@ const client = new MongoClient(URI, options);
 const createOrder = async (req, res) => {
   try {
     await client.connect();
-    console.log("connected");
 
     const db = client.db("e-commerce");
     const cartItems = await db.collection("cart").find().toArray();
@@ -30,7 +29,7 @@ const createOrder = async (req, res) => {
 
     if (cartItems) {
       const orderItems = await db.collection("order").insertMany(cartItems);
-      console.log(cartItems.length);
+
       return res.status(200).json({
         status: 200,
         data: cartItems,

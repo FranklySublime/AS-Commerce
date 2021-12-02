@@ -27,7 +27,7 @@ const HomePage = () => {
             .slice(0, numItems ? numItems : productFeed.data.length)
             .map((item) => {
               const product = item;
-              console.log(product, "boop");
+
               const name = product.name;
               const picture = product.imageSrc;
               const _id = product._id;

@@ -67,7 +67,7 @@ const ProductInfo = () => {
             quantity: item.quantity + 1,
             price: productDetails.price.replace("$", ""),
           };
-          console.log("SPAGHET", Number(productDetails.price.replace("$", "")));
+
           handleCartDb(obj);
           return { ...item, quantity: item.quantity + 1 };
         } else {
@@ -76,7 +76,6 @@ const ProductInfo = () => {
       });
       setShoppingCart(newCart);
       sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
-      console.log(shoppingCart, "hello");
     } else {
       // setItemCount(itemCount + 1);
       setShoppingCart((customersCart) => {
@@ -96,16 +95,12 @@ const ProductInfo = () => {
           quantity: 1,
           price: productDetails.price.replace("$", ""),
         };
-        console.log("SPAGHET", productDetails.price.replace("$", ""));
         handleCartDb(obj);
         sessionStorage.setItem("shoppingCart", JSON.stringify(customerCart));
         return customerCart;
       });
-      console.log(shoppingCart, "hello");
     }
   };
-
-  console.log(productDetails);
 
   //render item details page
   return (

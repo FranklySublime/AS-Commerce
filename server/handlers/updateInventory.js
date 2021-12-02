@@ -16,13 +16,12 @@ const client = new MongoClient(URI, options);
 
 const updateInventory = async (req, res) => {
   // items_ids needs to be of this format: "item_ids": [6543, 6544, 6545]
-  console.log(req.body);
+
   const { item_ids } = req.body;
   const purcharsed_ids = Object.values(item_ids);
 
   try {
     await client.connect();
-    console.log("connected");
 
     const db = client.db("e-commerce");
 

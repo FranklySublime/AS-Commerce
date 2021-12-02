@@ -7,17 +7,13 @@ const Confirmation = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const orderTotal = (array) => {
-    console.log(confirmation);
     let total = 0;
     array.forEach((item) => {
       total +=
         Number(parseFloat(item.price.replace("$", "")).toFixed(2)) * item.qty;
     });
-
     setTotalPrice(total);
   };
-
-  console.log(totalPrice);
 
   useEffect(() => {
     fetch("/order")
@@ -25,11 +21,8 @@ const Confirmation = () => {
       .then((data) => {
         setConfirmation(data.data);
         orderTotal(data.data);
-        console.log("but why???");
       });
   }, []);
-
-  console.log(confirmation);
 
   return (
     <>

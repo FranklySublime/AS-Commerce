@@ -81,7 +81,6 @@ export const CartProvider = ({ children }) => {
         })
           .then((res) => res.json())
           .then((json) => {
-            console.log(json);
             setShoppingCart([]);
             sessionStorage.removeItem("shoppingCart");
             navigate("../confirmation", { replace: true });

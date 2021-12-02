@@ -21,14 +21,13 @@ const updateCart = async (req, res) => {
     item_qty,
     // subPrice
   } = req.body;
-  console.log(req.body);
+
   const query = Number(_id);
   const qty = Number(item_qty);
   // const price = Number(subPrice);
 
   try {
     await client.connect();
-    console.log("connected");
 
     const db = client.db("e-commerce");
     const itemFoundInCart = await db.collection("cart").findOne({ _id: query });
@@ -84,7 +83,6 @@ const deleteCartItem = async (req, res) => {
 
   try {
     await client.connect();
-    console.log("connected");
 
     const db = client.db("e-commerce");
 

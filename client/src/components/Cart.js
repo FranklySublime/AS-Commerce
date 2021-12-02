@@ -34,7 +34,6 @@ const Cart = () => {
     });
     setShoppingCart(newCart);
     sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
-    console.log(shoppingCart);
   };
 
   // removing inventory from cart functionality
@@ -55,7 +54,6 @@ const Cart = () => {
     });
     setShoppingCart(newCart);
     sessionStorage.setItem("shoppingCart", JSON.stringify(newCart));
-    console.log(shoppingCart);
   };
 
   // remove item from cart
@@ -63,7 +61,6 @@ const Cart = () => {
     shoppingCart.splice(shoppingCart.indexOf(object), 1);
     handleRemoveCartDb(object._id);
     sessionStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-    console.log(shoppingCart);
     setUpdateProducts(!updateProducts);
   };
 
@@ -77,7 +74,6 @@ const Cart = () => {
           <BigWrapper>
             <CartWrapper>
               {shoppingCart.map((item) => {
-                console.log("bonjour", item);
                 return (
                   <ProductDetails key={item._id}>
                     {item.quantity >= 1 && (
