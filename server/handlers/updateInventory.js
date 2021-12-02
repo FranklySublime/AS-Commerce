@@ -31,12 +31,20 @@ const updateInventory = async (req, res) => {
     //   { $inc: { "numInStock" : -1 }}
     // );
 
-    const result = purcharsed_ids.forEach((id) => {
-      db.collection("items").findOneAndUpdate(
-        { _id: id },
-        { $inc: { numInStock: -1 } }
-      );
-    });
+    for (let i = 0; i < purcharsed_ids.length; i++) {
+      await db
+        .collection("items")
+        .findOneAndUpdate(
+          { _id: purcharsed_ids[i] },
+          { $inc: { numInStock: -1 } }
+        );
+    }
+
+    // const result = purcharsed_ids.forEach((id) => {
+    //   await db
+    //     .collection("items")
+    //     .findOneAndUpdate({ _id: id }, { $inc: { numInStock: -1 } });
+    // });
 
     // db.collection("items").find( { _id : { $in : item_ids } } );
 
@@ -51,7 +59,7 @@ const updateInventory = async (req, res) => {
     // const result = await collection.updateOne({}, updateDoc, {});
 
     return res.status(200).json({
-      data: result,
+      message: "all good!",
     });
 
     // result.matchedCount === result.modifiedCount ?
