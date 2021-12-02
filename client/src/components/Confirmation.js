@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { CartContext } from "../context/CartContext";
 
 const Confirmation = () => {
   const [confirmation, setConfirmation] = useState(null);
@@ -8,15 +7,14 @@ const Confirmation = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const orderTotal = (array) => {
-    console.log("BRUH");
     console.log(confirmation);
-
-    return array.forEach((item) => {
-      setTotalPrice(
-        Number(totalPrice) +
-          Number(parseFloat(item.price.replace("$", "")).toFixed(2)) * item.qty
-      );
+    let total = 0;
+    array.forEach((item) => {
+      total +=
+        Number(parseFloat(item.price.replace("$", "")).toFixed(2)) * item.qty;
     });
+
+    setTotalPrice(total);
   };
 
   console.log(totalPrice);
