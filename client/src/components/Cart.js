@@ -96,9 +96,9 @@ const Cart = () => {
                             <Button onClick={() => handleDecrement(item)}>
                               -
                             </Button>
-                            <Button onClick={() => handleRemove(item)}>
+                            <RemoveButton onClick={() => handleRemove(item)}>
                               Remove
-                            </Button>
+                            </RemoveButton>
                           </QuantityWrapper>
                         </ItemDetails>
                       </>
@@ -136,6 +136,17 @@ const Button = styled.button`
   border-width: thin;
   margin-right: 4px;
   width: 25px;
+  border-radius: 50%;
+`;
+
+const RemoveButton = styled.button`
+  border: solid;
+  background-color: transparent;
+  color: #3f612d;
+  border-color: #3f612d;
+  border-width: thin;
+  margin-right: 4px;
+  width: 75px;
   border-radius: 50%;
 `;
 

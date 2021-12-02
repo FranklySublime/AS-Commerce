@@ -131,7 +131,7 @@ const ProductInfo = () => {
                   {productDetails.price} -- <strong>Buy Now!</strong>
                 </ItemButton>
               ) : (
-                <p>Out of Stock</p>
+                <Stock>Out of Stock</Stock>
               )}
             </div>
           </>
@@ -150,6 +150,10 @@ const ItemImage = styled.img`
   margin-left: 100px;
   margin-top: 100px;
   margin-right: 50px;
+`;
+const Stock = styled.p`
+  font-family: "Lato", sans-serif;
+  color: #92aa83;
 `;
 const ItemButton = styled.button`
   background-color: #3f612d;

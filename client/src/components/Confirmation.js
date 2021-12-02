@@ -27,7 +27,6 @@ const Confirmation = () => {
       .then((data) => {
         setConfirmation(data.data);
         orderTotal(data.data);
-
         console.log("but why???");
       });
   }, []);
@@ -36,28 +35,30 @@ const Confirmation = () => {
 
   return (
     <>
-      <div>
-        <h2>Congrats! Your order is confirmed.</h2>
-        <p>Order Details: </p>
-        {confirmation?.map((item) => {
-          return (
-            <ItemWrapper>
-              <ItemSummary>
-                <Quantity>{item.qty}x</Quantity>
-                <ItemName>{item.name}</ItemName>
-              </ItemSummary>
-              <ItemDetails>
-                {/* <Company>Sold by: {item.company}</Company> */}
-                <ItemPrice>{item.price}</ItemPrice>
-              </ItemDetails>
-            </ItemWrapper>
-          );
-        })}
-        <TotalDiv>
-          <TotalText>Total</TotalText>
-          <Total>$ {totalPrice}</Total>
-        </TotalDiv>
-      </div>
+      <Div>
+        <AnotherDiv>
+          <H2>Congrats! Your order is confirmed.</H2>
+          <Order>Order Details: </Order>
+          {confirmation?.map((item) => {
+            return (
+              <ItemWrapper>
+                <ItemSummary>
+                  <Quantity>{item.qty}x</Quantity>
+                  <ItemName>{item.name}</ItemName>
+                </ItemSummary>
+                <ItemDetails>
+                  {/* <Company>Sold by: {item.company}</Company> */}
+                  <ItemPrice>{item.price}</ItemPrice>
+                </ItemDetails>
+              </ItemWrapper>
+            );
+          })}
+          <TotalDiv>
+            <TotalText>Total</TotalText>
+            <Total>$ {totalPrice}</Total>
+          </TotalDiv>
+        </AnotherDiv>
+      </Div>
     </>
   );
 };
@@ -68,6 +69,21 @@ const TotalDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 600px;
+`;
+const AnotherDiv = styled.div`
+  margin-left: 25%;
+`;
+const H2 = styled.h2`
+  font-family: "Lato", sans-serif;
+  color: #3f612d;
+`;
+const Div = styled.div`
+  background-color: #f1f7ee;
+  height: 100vh;
+`;
+const Order = styled.p`
+  font-family: "Lato", sans-serif;
+  color: #3f612d;
 `;
 const TotalText = styled.p`
   font-family: "Lato", sans-serif;
