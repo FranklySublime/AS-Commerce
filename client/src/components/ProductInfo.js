@@ -10,7 +10,8 @@ const ProductInfo = () => {
   const [companyInfo, setCompanyInfo] = useState(null);
   const [individualCompany, setIndividualCompany] = useState(null);
   const { _id } = useParams();
-  const { shoppingCart, setShoppingCart } = useContext(CartContext);
+  const { shoppingCart, setShoppingCart, handleCartDb } =
+    useContext(CartContext);
 
   //get item based on _id
   useEffect(() => {
@@ -61,6 +62,13 @@ const ProductInfo = () => {
     if (inCart) {
       let newCart = shoppingCart.map((item) => {
         if (productDetails._id === item._id) {
+          let obj = {
+            _id: productDetails._id,
+            quantity: item.quantity + 1,
+            price: productDetails.price.replace("$", ""),
+          };
+          console.log("SPAGHET", Number(productDetails.price.replace("$", "")));
+          handleCartDb(obj);
           return { ...item, quantity: item.quantity + 1 };
         } else {
           return item;
@@ -83,6 +91,13 @@ const ProductInfo = () => {
           imageSrc: productDetails.imageSrc,
           company: individualCompany.name,
         });
+        let obj = {
+          _id: productDetails._id,
+          quantity: 1,
+          price: productDetails.price.replace("$", ""),
+        };
+        console.log("SPAGHET", productDetails.price.replace("$", ""));
+        handleCartDb(obj);
         sessionStorage.setItem("shoppingCart", JSON.stringify(customerCart));
         return customerCart;
       });

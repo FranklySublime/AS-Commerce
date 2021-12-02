@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 const Confirmation = () => {
-  const { shoppingCart, totalPrice } = React.useContext(CartContext);
+  const [confirmation, setConfirmation] = useState(null);
+
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const orderTotal = (array) => {
+    console.log("BRUH");
+    console.log(confirmation);
+
+    return array.forEach((item) => {
+      setTotalPrice(
+        Number(totalPrice) +
+          Number(parseFloat(item.price.replace("$", "")).toFixed(2))
+      );
+    });
+  };
+
+  console.log(totalPrice);
+
+  useEffect(() => {
+    fetch("/order")
+      .then((res) => res.json())
+      .then((data) => {
+        setConfirmation(data.data);
+        orderTotal(data.data);
+
+        console.log("but why???");
+      });
+  }, []);
+
+  console.log(confirmation);
+
   return (
     <>
       <div>
         <h2>Congrats! Your order is confirmed.</h2>
         <p>Order Details: </p>
-        {shoppingCart.map((item) => {
+        {confirmation?.map((item) => {
           return (
             <ItemWrapper>
               <ItemSummary>
-                <Quantity>{item.quantity}x</Quantity>
+                <Quantity>{item.qty}x</Quantity>
                 <ItemName>{item.name}</ItemName>
               </ItemSummary>
               <ItemDetails>
-                <Company>Sold by: {item.company}</Company>
+                {/* <Company>Sold by: {item.company}</Company> */}
                 <ItemPrice>{item.price}</ItemPrice>
               </ItemDetails>
             </ItemWrapper>
@@ -25,7 +55,7 @@ const Confirmation = () => {
         })}
         <TotalDiv>
           <TotalText>Total</TotalText>
-          <Total>${totalPrice.toFixed(2)}</Total>
+          <Total>$ {totalPrice}</Total>
         </TotalDiv>
       </div>
     </>

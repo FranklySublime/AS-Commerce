@@ -5,7 +5,7 @@ import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
 
 const Checkout = () => {
-  const { shoppingCart, totalPrice } = useContext(CartContext);
+  const { shoppingCart, totalPrice, handleToOrder } = useContext(CartContext);
 
   return (
     <Wrapper>
@@ -34,7 +34,7 @@ const Checkout = () => {
           </AnotherDiv>
         </OrderSummary>
         <FormWrapper>
-          <form type="submit">
+          <form type="submit" onSubmit={(e) => handleToOrder(e)}>
             <Input placeholder="First Name" required />
             <Input placeholder="Last Name" required />
             <Input placeholder="e-mail" type="email" required />

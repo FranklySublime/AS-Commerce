@@ -6,14 +6,27 @@ import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
 
 const Cart = () => {
-  const { shoppingCart, setShoppingCart, totalPrice, totalQuantity } =
-    useContext(CartContext);
+  const {
+    shoppingCart,
+    setShoppingCart,
+    totalPrice,
+    totalQuantity,
+    handleCartDb,
+    handleRemoveCartDb,
+    handleToOrder,
+  } = useContext(CartContext);
   const { updateProducts, setUpdateProducts } = useContext(ProductContext);
 
   // adding inventory from cart functionality
   const handleIncrement = (object) => {
     let newCart = shoppingCart.map((item) => {
       if (item._id === object._id) {
+        let obj = {
+          _id: object._id,
+          quantity: object.quantity + 1,
+          price: object.price,
+        };
+        handleCartDb(obj);
         return { ...object, quantity: object.quantity + 1 };
       } else {
         return item;
@@ -31,6 +44,12 @@ const Cart = () => {
     }
     let newCart = shoppingCart.map((item) => {
       if (item._id === object._id) {
+        let obj = {
+          _id: object._id,
+          quantity: object.quantity - 1,
+          price: object.price,
+        };
+        handleCartDb(obj);
         return { ...object, quantity: object.quantity - 1 };
       } else return item;
     });
@@ -42,7 +61,7 @@ const Cart = () => {
   // remove item from cart
   const handleRemove = (object) => {
     shoppingCart.splice(shoppingCart.indexOf(object), 1);
-
+    handleRemoveCartDb(object._id);
     sessionStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
     console.log(shoppingCart);
     setUpdateProducts(!updateProducts);
