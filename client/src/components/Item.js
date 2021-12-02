@@ -39,6 +39,7 @@ const PriceTag = styled.p`
   max-width: 70px;
   color: #3f612d;
   padding: 10px;
+  border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   margin-left: 290px;
   margin-top: -2px;
