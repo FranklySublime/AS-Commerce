@@ -102,6 +102,7 @@ const ItemWrapper = styled.div`
 
 const ItemSummary = styled.div`
   display: flex;
+  margin-top: 30px;
   flex-direction: row;
 `;
 
@@ -137,7 +138,7 @@ const ItemPrice = styled.div`
 const Total = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 15px;
+  margin-top: 45px;
   font-size: 25px;
   font-weight: bold;
   font-family: "Lato", sans-serif;
@@ -158,10 +159,11 @@ const FormWrapper = styled.div`
 
 const Input = styled.input`
   margin: 3px;
+  width: 200px;
 `;
 
 const Confirmation = styled.button`
-  width: 158px;
+  width: 215px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -175,6 +177,7 @@ const Confirmation = styled.button`
     border: solid;
     border-color: #3f612d;
     border-width: medium;
+    box-shadow: 10px 10px;
   }
 `;
 
