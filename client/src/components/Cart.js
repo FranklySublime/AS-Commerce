@@ -63,7 +63,7 @@ const Cart = () => {
     sessionStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
     setUpdateProducts(!updateProducts);
   };
-
+  console.log(shoppingCart);
   return (
     <Wrapper>
       <H1>Your Cart</H1>
@@ -173,7 +173,7 @@ const ItemDetails = styled.div`
 const ItemImage = styled.img`
   height: 150px;
   max-width: 150px;
-  border-radius: 30%30px;
+  border-radius: 30% 30px;
   margin-right: 50px;
 `;
 
