@@ -4,15 +4,15 @@
 
 const { MongoClient } = require("mongodb");
 
-const URI =
-  "mongodb+srv://djeehem:j43j5h345hmnb@cluster0.alqgy.mongodb.net/e-commerce?retryWrites=true&w=majority";
+require("dotenv").config();
+const { MONGO_URI } = process.env;
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
-const client = new MongoClient(URI, options);
+const client = new MongoClient(MONGO_URI, options);
 
 const getItem = async (req, res) => {
   const { _id } = req.params;

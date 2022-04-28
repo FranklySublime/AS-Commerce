@@ -1,11 +1,8 @@
 const { MongoClient } = require("mongodb");
 const fs = require("file-system");
 
-// require('dotenv').config();
-// const {MONGO_URI} = process.env;
-
-const URI =
-  "mongodb+srv://djeehem:j43j5h345hmnb@cluster0.alqgy.mongodb.net/e-commerce?retryWrites=true&w=majority";
+require("dotenv").config();
+const { MONGO_URI } = process.env;
 
 const companies = JSON.parse(fs.readFileSync("./data/companies.json"));
 const items = JSON.parse(fs.readFileSync("./data/items.json"));
@@ -18,7 +15,7 @@ const options = {
 const batchImport = async (req, res) => {
   try {
     // creates a new client
-    const client = new MongoClient(URI, options);
+    const client = new MongoClient(MONGO_URI, options);
 
     // connect to the client
     await client.connect();
